@@ -2,9 +2,9 @@
 <div class="container">
     <h1>Verification Form</h1>
 <form [formGroup]="verificationForm"  >
-    
+  
     <div class="form-group">
-        <label for="city">City</label>
+        <label for="city" >City</label>
         <div class="row">
         <div class="col-lg-6">
         <input        
@@ -18,7 +18,7 @@
    
     
     <div *ngIf="f.city.touched && f.city.invalid" class="alert alert-danger">
-        <div *ngIf="f.city.errors?.required">City is required</div>
+        <div  class="error" *ngIf="f.city.errors?.required">City is required</div>
     </div>
 
     <div class="form-group">
@@ -35,9 +35,9 @@
     </div>
     
     <div *ngIf="f.pannumber.touched && f.pannumber.invalid" class="alert alert-danger">
-        <div *ngIf="f.pannumber.errors?.required">PanNumber is required</div>
-        <div *ngIf="f.pannumber.errors?.minlength">PanNumber should be 10 character</div>
-        <div *ngIf="f.pannumber.errors?.pattern">Please Enter valid panunmber</div>
+        <div  class="error" *ngIf="f.pannumber.errors?.required">PanNumber is required</div>
+        <div  class="error" *ngIf="f.pannumber.errors?.minlength">PanNumber should be 10 character</div>
+        <div  class="error" *ngIf="f.pannumber.errors?.pattern">Please Enter valid panunmber</div>
     </div>
 
     <div class="form-group">
@@ -54,8 +54,9 @@
     </div>
     
     <div *ngIf="f.fullname.touched && f.fullname.invalid" class="alert alert-danger">
-        <div *ngIf="f.fullname.errors?.required">Fullname is required</div>
-        <div *ngIf="f.fullname.errors?.maxlength">Fullname should not be more than 140 character</div>
+        <div  class="error" *ngIf="f.fullname.errors?.required">Fullname is required</div>
+        <div  class="error" *ngIf="f.fullname.errors?.maxlength">
+            Fullname should not be more than 140 character</div>
     </div>
 
     <div class="form-group">
@@ -72,35 +73,34 @@
     </div>
     
     <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
-        <div *ngIf="f.email.errors?.required">Email is required</div>
-        <div *ngIf="f.email.errors?.email">Please Enter valid email</div>
-        <div *ngIf="f.email.errors?.maxlength">Fullname should not be more than 255 character</div>
+        <div class="error" *ngIf="f.email.errors?.required">Email is required</div>
+        <div  class="error" *ngIf="f.email.errors?.email">Please Enter valid email</div>
+        <div   class="error" *ngIf="f.email.errors?.maxlength">Fullname should not be more 
+            than 255 character</div>
     </div>
 
     <div class="form-group">
         <label for="mobile">Mobile</label>
         <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group prefix">                           
-                <span class="input-group-addon">+91</span>
+            <div class="col-lg-6">
         <input 
         formControlName="mobile"
             id="Mobile" 
             type="text" 
-            class="form-control">
-            </div>
-            </div>
-            </div>
+            class="form-control">                   
+           </div>
+           </div> 
     </div>
 
     <div *ngIf="f.mobile.touched && f.mobile.invalid" class="alert alert-danger">
-        <div *ngIf="f.mobile.errors?.required">Mobile number is required</div>
-        <div *ngIf="f.mobile.errors?.maxlength || f.mobile.errors?.minlength">Please Enter valid Mobile Number</div>
-        <div *ngIf="f.mobile.errors?.pattern">Please Enter valid Mobile Number</div>
+        <div  class="error" *ngIf="f.mobile.errors?.required">Mobile number is required</div>
+        <div  class="error" *ngIf="f.mobile.errors?.maxlength || f.mobile.errors?.minlength">
+            Please Enter valid Mobile Number</div>
+        <div  class="error" *ngIf="f.mobile.errors?.pattern">Please Enter valid Mobile Number</div>
     </div>
 
         <!--mobile field  is valid, then call 'getOTP' API-->
-    <button *ngIf="f.mobile.valid"class="btn btn-primary" (click)="submit()" >getOTP</button>
+    <button *ngIf="f.mobile.valid" class="getotp" (click)="getOTP()" >getOTP</button>
 
     <div class="form-group">
         <label *ngIf="showme" for="opt">Otp</label>
@@ -115,20 +115,20 @@
             </div>
             </div>
     </div>
-
    <!-- User can click 'Resend OTP' link only 3 times. after that user shall be shown error message 
     "Please try again after an hour." and 'Resend OTP' link shall be hidden.-->
-    <a *ngIf="resendOtp" [routerLink]="" (click)="resendUserOTP()" >Resend OTP</a>
-
+    <button *ngIf="resendOtp" class="resendOtp" [disabled]="dis"
+    type="button" (click)="resendUserOTP()">Resend Otp</button>
+     
     <div *ngIf="f.otp.touched && f.otp.invalid" class="alert alert-danger">
-        <div *ngIf="f.otp.errors?.required">Otp is required</div>
-        <div *ngIf="f.otp.errors?.maxlength">Please Enter valid Otp</div>
-        <div *ngIf="f.otp.errors?.pattern">Please Enter valid Otp</div>
-
+        <div  class="error" *ngIf="f.otp.errors?.required">Otp is required</div>
+        <div  class="error" *ngIf="f.otp.errors?.maxlength">Please Enter valid Otp</div>
+        <div  class="error" *ngIf="f.otp.errors?.pattern">Please Enter valid Otp</div>
     </div>
+
     <div class="row">
-    <button *ngIf="showme" class="btn btn-primary"  [disabled]="!verificationForm.valid" (click)="verifyOtp()">
-        VerifyOtp</button>
+       <button *ngIf="showme" class="verify"  [disabled]="!verificationForm.valid" (click)="verifyOtp()">
+        verifyOtp</button>
     </div>
 </form>
 </div>
