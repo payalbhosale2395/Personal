@@ -1,0 +1,65 @@
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid blueviolet;
+  }
+  
+.container{
+    margin-left: 15em;
+    text-align: center;
+    background-color: #f2f2f2;
+    width: 50%;
+}
+
+label{
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.error{
+    color:red;
+    margin: 0.5em 0 1em;
+   /* background-color: rgb(196, 99, 136);*/
+    padding: 12px 20px;
+    width: 45%;
+    text-align: center;
+    margin-left: 160px;
+    /*border: 2px solid blueviolet;*/
+}
+button.verify:disabled {
+  background: #dddddd;
+}
+
+  .getotp{
+    background-color: #04AA6D;   
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+  }
+  .verify {
+    background-color:#3b5998;
+    color: white;
+    padding: 16px 20px;
+    margin: 4px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+  }
+  .resendOtp {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: arial, sans-serif;
+    color: #069;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+  }
