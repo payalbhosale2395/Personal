@@ -101,7 +101,6 @@
 
         <!--mobile field  is valid, then call 'getOTP' API-->
     <button *ngIf="f.mobile.valid" class="getotp" (click)="getOTP()" >getOTP</button>
-
     <div class="form-group">
         <label *ngIf="showme" for="opt">Otp</label>
        <div class="row">
@@ -115,6 +114,9 @@
             </div>
             </div>
     </div>
+    <h5 *ngIf="timer">Otp will be valid for 3 minutes</h5>
+    <h4 *ngIf="timer">{{ min }} : {{ sec }}</h4>
+
    <!-- User can click 'Resend OTP' link only 3 times. after that user shall be shown error message 
     "Please try again after an hour." and 'Resend OTP' link shall be hidden.-->
     <button *ngIf="resendOtp" class="resendOtp" [disabled]="dis"
