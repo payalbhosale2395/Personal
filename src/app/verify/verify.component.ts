@@ -10,8 +10,14 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 export class VerifyComponent{
   showme:boolean=false;
   resendOtp:boolean=false;
+  timer:boolean=false;
   dis:boolean=true;
   count:number=0;
+  time: number = 180;
+  min: number=0;
+  sec: number=0;
+  interval:any;
+
   
 constructor(public http:HttpClient,private vf: FormBuilder) { }
 
@@ -62,15 +68,16 @@ getOTP(){
   'email': this.verificationForm.value.email, 
   'mobile': this.verificationForm.value.mobile},
   httpOptions).toPromise().then((data : any ) => {
-  if(data.status=1)
+  if(data.status=="Success")
    { 
+  this.time=180;
+  this.timer=true;  
   this.showme=true;
   this.resendOtp=true;
   this.dis=true;
-  alert("Otp is send to "+this.verificationForm.value.mobile);
-  setTimeout(() => {
-    this.dis=false;
- }, 180000);
+  alert("Your Otp has been sent to "+this.verificationForm.value.mobile);
+  this.startTimer()
+ 
    }
   else
   {
@@ -78,7 +85,18 @@ getOTP(){
   }
   });
 }
-
+startTimer() {
+  this.interval = setInterval(() => {
+    if(this.time==0){
+    this.timer=false;  
+    this.dis=false;  
+    return;
+    }
+    this.time--;
+   this.min=Math.floor(this.time/60);
+    this.sec=this.time%60;
+  },this.time)
+}
 verifyOtp()
 {
   const httpOptions = {
@@ -90,7 +108,7 @@ verifyOtp()
   {'mobile':this.verificationForm.value.mobile,
   'otp':this.verificationForm.value.otp}).toPromise().then((data : any )=> 
   {console.log(this.verificationForm.value)
-    if(data.status=='1')
+    if(data.status=="Success")
   {
   alert("Thank you for verification "+this.verificationForm.value.fullname)
   }
