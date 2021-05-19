@@ -21,17 +21,18 @@ label{
 .error{
     color:red;
     margin: 0.5em 0 1em;
-   /* background-color: rgb(196, 99, 136);*/
     padding: 12px 20px;
     width: 45%;
     text-align: center;
     margin-left: 160px;
-    /*border: 2px solid blueviolet;*/
 }
 button.verify:disabled {
   background: #dddddd;
 }
 
+button.resendOtp:disabled {
+  color: grey;
+}
   .getotp{
     background-color: #04AA6D;   
     color: white;
@@ -53,13 +54,19 @@ button.verify:disabled {
     opacity: 0.9;
   }
   .resendOtp {
+    margin-bottom: 16px;
+    opacity: 0.9;
     background: none!important;
     border: none;
     padding: 0!important;
+    padding: 16px 20px;
     font-family: arial, sans-serif;
     color: #069;
     font-size: 16px;
     font-weight: 400;
     text-decoration: underline;
     cursor: pointer;
+  }
+  h4{
+    color:red;
   }
