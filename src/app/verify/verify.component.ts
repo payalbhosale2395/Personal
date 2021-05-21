@@ -12,7 +12,7 @@ export class VerifyComponent{
   resendOtp:boolean=false;
   timer:boolean=false;
   dis:boolean=true;
-  count:number=0;
+  count:number=1;
   time: number = 180;
   min: number=0;
   sec: number=0;
@@ -40,8 +40,8 @@ get f()
 
 resendUserOTP()
 {
-  this.count++;
-  if(this.count>3)
+ 
+  if(this.count==3)
   {
     alert("Please try again after an hour");
     this.resendOtp=false;
@@ -49,6 +49,7 @@ resendUserOTP()
   else{
     this.getOTP();
   }
+  this.count++;
 }
 
 getOTP(){
@@ -99,15 +100,25 @@ startTimer() {
 }
 verifyOtp()
 {
+  if(this.timer==false)
+  {
+    alert("Otp is invalid");
+    return;
+  }
+
+  this.resendOtp=false;
+  this.timer=false;
+  
   const httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json'
     })
   };
   return this.http.post('http://lab.thinkoverit.com/api/verifyOTP.php',
-  {'mobile':this.verificationForm.value.mobile,
+  {
+  'mobile':this.verificationForm.value.mobile,
   'otp':this.verificationForm.value.otp}).toPromise().then((data : any )=> 
-  {console.log(this.verificationForm.value)
+  {
     if(data.status=="Success")
   {
   alert("Thank you for verification "+this.verificationForm.value.fullname)
