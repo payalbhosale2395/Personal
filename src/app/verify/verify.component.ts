@@ -40,16 +40,16 @@ get f()
 
 resendUserOTP()
 {
- 
-  if(this.count==3)
+ if(this.count<3)
   {
-    alert("Please try again after an hour");
+    this.count++;
+    this.getOTP(); 
+  }
+  else
+  {   
     this.resendOtp=false;
+    alert("Please try again after an hour");   
   }
-  else{
-    this.getOTP();
-  }
-  this.count++;
 }
 
 getOTP(){
